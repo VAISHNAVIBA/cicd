@@ -96,7 +96,7 @@ function App() {
 
   return (
     <>
-      <div className="bg-gradient-to-r from-gray-900 to-black min-h-screen">
+      <div className="bg-gradient-to-r from-gray-900 to-black min-h-screen flex justify-center items-start">
         <div className="hidden sm:block">
           <Navbar />
         </div>
