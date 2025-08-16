@@ -1,4 +1,4 @@
-name: CI/CD for Vite React App
+name: Deploy Vite React App
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  build-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,37 +23,9 @@ jobs:
 
       - name: Build Vite app
         run: npm run build
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build Vite app
-        run: npm run build
-
-      - name: Configure Git identity
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "vaishnaviba374@gmail.com"
-
-      - name: Set up GitHub authentication
-        run: |
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
 
       - name: Deploy to GitHub Pages
-        run: |
-          npx gh-pages -d dist  # Ensure that dist is the correct output directory
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} #change
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
