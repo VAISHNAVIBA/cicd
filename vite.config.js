@@ -5,4 +5,5 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   base: "/cicd/", // This should be the path relative to your GitHub Pages
   plugins: [react()],
+  build: { outDir: "dist" },
 });
