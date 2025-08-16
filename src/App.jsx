@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import Navbar from "./Components/Navbar";
+import Navbar from "./Navbar";
 import { v4 as uuidv4 } from "uuid";
 
 function App() {
